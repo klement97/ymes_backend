@@ -52,4 +52,4 @@ jobs:
         run: python manage.py migrate --settings=ymes_backend.settings.ci
 
       - name: Run tests
-        run: python manage.py test --settings=ymes_backend.settings.ci
+        run: pytest --ds=ymes_backend.settings.ci
