@@ -16,7 +16,7 @@ def test_create_user_with_valid_fields():
         is_superuser: False
     """
     user_manager = get_user_model().objects
-    phone_number = fake.phone_number()
+    phone_number = fake.phone_number()[:20]
     user = user_manager.create_user(phone_number=phone_number, password='foo')
 
     assert user.phone_number == phone_number
@@ -28,7 +28,7 @@ def test_create_user_with_valid_fields():
 @pytest.mark.django_db
 def test_username_is_not_used():
     user_manager = get_user_model().objects
-    user = user_manager.create_user(phone_number=fake.phone_number(),
+    user = user_manager.create_user(phone_number=fake.phone_number()[:20],
                                     password='foo')
     try:
         assert user.username is None
@@ -40,7 +40,8 @@ def test_username_is_not_used():
 @pytest.mark.django_db
 def test_if_raises_exception_when_needed():
     user_manager = get_user_model().objects
-    user_manager.create_user(phone_number=fake.phone_number(), password='foo')
+    user_manager.create_user(phone_number=fake.phone_number()[:20],
+                             password='foo')
 
     with pytest.raises(TypeError):
         user_manager.create_user()
@@ -55,7 +56,7 @@ def test_if_raises_exception_when_needed():
 @pytest.mark.django_db
 def test_create_superuser_valid_fields():
     user_manager = get_user_model().objects
-    phone_number = fake.phone_number()
+    phone_number = fake.phone_number()[:20]
     admin_user = user_manager.create_superuser(
         phone_number=phone_number,
         password='foo'
@@ -71,7 +72,7 @@ def test_create_superuser_valid_fields():
 def test_create_super_user_not_valid_fields():
     with pytest.raises(ValueError):
         get_user_model().objects.create_superuser(
-            phone_number=fake.phone_number(),
+            phone_number=fake.phone_number()[:20],
             password='foo',
             is_superuser=False
         )
