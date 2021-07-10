@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+import os
 
 from ymes_backend.base_dir import BASE_DIR
 
@@ -36,10 +37,12 @@ INSTALLED_APPS = [
 
     # Internal
     'apps.authentication',
+    'apps.docs',
 
     # Third party
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +63,14 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
-    ]
+    ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'YMES API',
+    'DESCRIPTION': 'API for YMES Project',
+    'VERSION': '0.1.0',
 }
 
 ROOT_URLCONF = 'ymes_backend.urls'
@@ -68,7 +78,7 @@ ROOT_URLCONF = 'ymes_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,6 +140,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
