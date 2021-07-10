@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'apps.authentication',
     'apps.docs',
     'apps.education',
+    'apps.common',
 
     # Third party
     'rest_framework',
