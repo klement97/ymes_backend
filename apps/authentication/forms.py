@@ -6,10 +6,10 @@ from apps.authentication.models import User
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('phone_number',)
+        fields = '__all__'
 
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ('phone_number',)
+        fields = '__all__'
