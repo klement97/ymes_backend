@@ -3,10 +3,11 @@ from django.contrib.auth.models import Group
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from apps.common.models import Track, SoftDelete
 from apps.common.utils import Gender
 
 
-class Child(models.Model):
+class Child(Track, SoftDelete):
     first_name = models.CharField(_('First Name'), max_length=50)
     last_name = models.CharField(_('Last Name'), max_length=50)
     mother_name = models.CharField(_('Mother name'), max_length=50)
