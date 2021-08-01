@@ -15,7 +15,7 @@ activity_model = 'education.Activity'
 @patch(mock_timezone_path)
 def test_get_current_activity_before_start(mock_timezone_now: MagicMock):
     start_time = time(10)
-    baker.make(activity_model, start_time=start_time)
+    baker.make(activity_model, start_time=start_time, end_time=time(11))
     time_before_earliest = time(hour=start_time.hour - 1)
     mock_timezone_now.return_value = time_before_earliest
 
@@ -26,7 +26,7 @@ def test_get_current_activity_before_start(mock_timezone_now: MagicMock):
 @patch(mock_timezone_path)
 def test_get_current_activity_after_end(mock_timezone_now: MagicMock):
     end_time = time(17)
-    baker.make(activity_model, end_time=end_time)
+    baker.make(activity_model, start_time=time(16), end_time=end_time)
     time_after_last = time(hour=end_time.hour + 1)
     mock_timezone_now.return_value = time_after_last
 
