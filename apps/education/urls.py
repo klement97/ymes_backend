@@ -1,8 +1,7 @@
-from rest_framework.routers import SimpleRouter
+from django.urls import path
 
-from apps.education.views.child import ChildViewSet
+from apps.education.views.child import child_view
 
-router = SimpleRouter()
-router.register('child', ChildViewSet)
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('child/', child_view)
+]
