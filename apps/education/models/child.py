@@ -22,6 +22,7 @@ class Child(models.Model):
         verbose_name=_('Group'),
         to=Group,
         on_delete=models.SET_NULL,
+        null=True
     )
 
     class Meta:
