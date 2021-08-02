@@ -5,9 +5,10 @@ import pytest
 from django.db import IntegrityError
 from model_bakery import baker
 
-from apps.education.models.activity import get_current_activity, Activity
+from apps.education.models.activity import Activity
+from apps.education.utils.activity import get_current_activity
 
-mock_timezone_path = 'apps.education.models.activity.timezone.now'
+mock_timezone_path = 'apps.education.utils.activity.timezone.now'
 activity_model = 'education.Activity'
 
 

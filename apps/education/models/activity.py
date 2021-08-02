@@ -1,17 +1,6 @@
-from typing import Optional
-
 from django.db import models
 from django.db.models import Q, F
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-
-
-def get_current_activity() -> Optional['Activity']:
-    now = timezone.now()
-    activity = Activity.objects.filter(start_time__lte=now, end_time__gte=now)[:1]
-
-    if activity.exists():
-        return activity[0]
 
 
 class Activity(models.Model):
