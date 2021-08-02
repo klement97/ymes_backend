@@ -11,7 +11,7 @@ fake = Faker()
 @pytest.fixture()
 def api_client() -> APIClient:
     # Include an appropriate `Authorization:` header on all requests.
-    user, created = User.objects.get_or_create(phone_number=fake.phone_number())
+    user, created = User.objects.get_or_create(phone_number=fake.phone_number()[:20])
     token, created = Token.objects.get_or_create(user=user)
     client = APIClient()
     client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
