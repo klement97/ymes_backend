@@ -9,9 +9,14 @@ class Activity(models.Model):
     name = models.CharField(_('Name'), max_length=100)
     description = models.TextField(_('Description'), blank=True)
     message = models.CharField(_('Message'), max_length=250, blank=True)
+    organization = models.ForeignKey(
+        verbose_name=_('Organization'),
+        to='organization.Organization',
+        on_delete=models.CASCADE,
+        related_name='activities'
+    )
 
     class Meta:
-        db_table = 'activity'
         verbose_name = 'activity'
         verbose_name_plural = 'activities'
         ordering = ['start_time']

@@ -1,64 +1,11 @@
 from datetime import time
-from unittest.mock import patch, MagicMock
 
 import pytest
 from django.db import IntegrityError
 from model_bakery import baker
 
 from apps.education.models.activity import Activity
-from apps.education.utils.activity import get_current_activity
-
-mock_timezone_path = 'apps.education.utils.activity.timezone.now'
-activity_model = 'education.Activity'
-
-
-@pytest.mark.django_db
-@patch(mock_timezone_path)
-def test_get_current_activity_before_start(mock_timezone_now: MagicMock):
-    start_time = time(10)
-    baker.make(activity_model, start_time=start_time, end_time=time(11))
-    time_before_earliest = time(hour=start_time.hour - 1)
-    mock_timezone_now.return_value = time_before_earliest
-
-    assert get_current_activity() is None
-
-
-@pytest.mark.django_db
-@patch(mock_timezone_path)
-def test_get_current_activity_after_end(mock_timezone_now: MagicMock):
-    end_time = time(17)
-    baker.make(activity_model, start_time=time(16), end_time=end_time)
-    time_after_last = time(hour=end_time.hour + 1)
-    mock_timezone_now.return_value = time_after_last
-
-    assert get_current_activity() is None
-
-
-@pytest.mark.django_db
-@patch(mock_timezone_path)
-def test_get_current_activity_within_range(mock_timezone_now: MagicMock):
-    activity_time = time(12, 0, 10)
-    start_time = time(
-        hour=activity_time.hour,
-        minute=activity_time.minute,
-        second=activity_time.second - 1
-    )
-    end_time = time(
-        hour=activity_time.hour,
-        minute=activity_time.minute,
-        second=activity_time.second + 1
-    )
-    activity = baker.make(
-        activity_model,
-        start_time=start_time,
-        end_time=end_time
-    )
-
-    mock_timezone_now.return_value = activity_time
-    current_activity = get_current_activity()
-
-    assert current_activity is not None
-    assert current_activity.id == activity.id
+from apps.education.tests.utils import activity_model
 
 
 def test_activity_ordering():

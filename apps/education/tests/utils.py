@@ -1,0 +1,6 @@
+mock_timezone_path = 'apps.education.utils.activity.timezone.now'
+activity_model = 'education.Activity'
+organization_model = 'organization.Organization'
+mock_get_current_activity = 'apps.education.views.activity.get_current_activity'
+activity_url = '/activity/'
+current_activity_url = f'{activity_url}current/'

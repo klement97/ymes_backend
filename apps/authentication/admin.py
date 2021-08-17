@@ -12,16 +12,17 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = User
-    list_display = ('phone_number', 'is_staff', 'is_active',)
-    list_filter = ('phone_number', 'is_staff', 'is_active',)
+    list_display = ('phone_number', 'is_staff', 'is_active', 'organization')
+    list_filter = ('phone_number', 'is_staff', 'is_active', 'organization')
     fieldsets = (
         (None, {'fields': (
             'phone_number',
             'first_name',
             'last_name',
             'email',
+            'organization',
             'date_joined',
-            'last_login'
+            'last_login',
         )}),
         ('Permissions', {'fields': (
             'is_superuser',
@@ -40,8 +41,8 @@ class CustomUserAdmin(UserAdmin):
             )
         }),
     )
-    search_fields = ('phone_number',)
-    ordering = ('phone_number',)
+    search_fields = ('phone_number', 'organization',)
+    ordering = ('phone_number', 'organization')
 
 
 admin.site.register(User, CustomUserAdmin)

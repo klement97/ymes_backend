@@ -1,0 +1,110 @@
+[
+  {
+    "model": "education.activity",
+    "pk": 1,
+    "fields": {
+      "start_time": "07:00:00",
+      "end_time": "09:00:00",
+      "name": "Pritja e fëmijëve",
+      "description": "",
+      "message": "",
+      "organization_id": 1
+    }
+  },
+  {
+    "model": "education.activity",
+    "pk": 2,
+    "fields": {
+      "start_time": "09:00:00",
+      "end_time": "09:30:00",
+      "name": "Ngrënia e mëngjesit",
+      "description": "",
+      "message": "",
+      "organization_id": 1
+    }
+  },
+  {
+    "model": "education.activity",
+    "pk": 3,
+    "fields": {
+      "start_time": "09:30:00",
+      "end_time": "10:00:00",
+      "name": "Lojra në kënde të ndryshme",
+      "description": "",
+      "message": "",
+      "organization_id": 1
+    }
+  },
+  {
+    "model": "education.activity",
+    "pk": 4,
+    "fields": {
+      "start_time": "10:00:00",
+      "end_time": "11:30:00",
+      "name": "Aktiviteti mësimor",
+      "description": "",
+      "message": "",
+      "organization_id": 1
+    }
+  },
+  {
+    "model": "education.activity",
+    "pk": 5,
+    "fields": {
+      "start_time": "11:30:00",
+      "end_time": "12:00:00",
+      "name": "Lojra në oborr",
+      "description": "",
+      "message": "",
+      "organization_id": 1
+    }
+  },
+  {
+    "model": "education.activity",
+    "pk": 6,
+    "fields": {
+      "start_time": "12:00:00",
+      "end_time": "13:00:00",
+      "name": "Ngrënia e drekës",
+      "description": "",
+      "message": "",
+      "organization_id": 1
+    }
+  },
+  {
+    "model": "education.activity",
+    "pk": 7,
+    "fields": {
+      "start_time": "13:00:00",
+      "end_time": "15:00:00",
+      "name": "Gjumi dhe përalla",
+      "description": "",
+      "message": "",
+      "organization_id": 1
+    }
+  },
+  {
+    "model": "education.activity",
+    "pk": 8,
+    "fields": {
+      "start_time": "15:00:00",
+      "end_time": "16:00:00",
+      "name": "Zgjimi dhe zemra",
+      "description": "",
+      "message": "",
+      "organization_id": 1
+    }
+  },
+  {
+    "model": "education.activity",
+    "pk": 9,
+    "fields": {
+      "start_time": "16:00:00",
+      "end_time": "17:00:00",
+      "name": "Largimi nga kopshti",
+      "description": "",
+      "message": "",
+      "organization_id": 1
+    }
+  }
+]

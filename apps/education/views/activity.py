@@ -1,26 +1,30 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.generics import ListAPIView
+from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 
+from apps.common.permissions import IsAdmin, ReadOnly
 from apps.education.models.activity import Activity
 from apps.education.serializers.activity import ActivitySerializer
 from apps.education.utils.activity import get_current_activity
 
 
-class ActivityListView(ListAPIView):
+class ActivityViewSet(ModelViewSet):
     serializer_class = ActivitySerializer
+    permission_classes = [IsAdmin | ReadOnly]
     queryset = Activity.objects.all()
 
+    def get_queryset(self):
+        user = self.request.user
+        return self.queryset.filter(organization_id=user.organization_id)
 
-activity_list_view = ActivityListView.as_view()
+    @action(
+        detail=False,
+        description='Get the activity which is happening right now if any.'
+    )
+    def current(self, request):
+        data = None
+        if activity := get_current_activity(request.user.organization):
+            serializer = ActivitySerializer(instance=activity)
+            data = serializer.data
 
-
-@api_view()
-def current_activity(_):
-    if activity := get_current_activity():
-        serializer = ActivitySerializer(instance=activity)
-
-        return Response(data=serializer.data)
-
-    return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response(data=data)

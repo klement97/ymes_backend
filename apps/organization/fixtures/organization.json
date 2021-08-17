@@ -1,0 +1,9 @@
+[
+  {
+    "model": "organization.organization",
+    "pk": 1,
+    "fields": {
+      "name": "Kopshti Yjet Margaritar"
+    }
+  }
+]

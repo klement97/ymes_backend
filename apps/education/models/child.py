@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from apps.common.models import Track, SoftDelete
-from apps.common.utils import Gender
+from apps.common.choices import Gender
 
 
 class Child(Track, SoftDelete):
@@ -31,7 +31,6 @@ class Child(Track, SoftDelete):
     class Meta:
         verbose_name = 'Child'
         verbose_name_plural = 'Children'
-        db_table = 'child'
 
     def __str__(self) -> str:
         return f'{self.first_name} {self.father_name} {self.last_name}'
