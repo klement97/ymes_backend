@@ -7,3 +7,9 @@ class WeekMenuSerializer(ModelSerializer):
     class Meta:
         model = WeekMenu
         fields = '__all__'
+
+
+class WeekMenuMealsSerializer(ModelSerializer):
+    class Meta:
+        model = WeekMenu
+        fields = ['id', 'name', 'meals']
