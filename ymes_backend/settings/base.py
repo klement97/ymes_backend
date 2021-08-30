@@ -105,9 +105,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ymes',
-        'USER': 'cardo',
-        'PASSWORD': 'cardo',
-        'HOST': '127.0.0.1',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
